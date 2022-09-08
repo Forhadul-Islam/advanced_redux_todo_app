@@ -3,15 +3,25 @@ import {
   CLEAR_COMPLETED_TODO,
   COMPLETE_ALL_TODO,
   DELETE_TODO,
+  LOAD_TODOS,
   SET_COLOR,
   TOGGLE_DONE,
 } from "./actionType";
 
-export const add_todo = (text) => {
+export const load_todos = (todos) => {
+  return {
+    type: LOAD_TODOS,
+    payload: {
+      todos,
+    },
+  };
+};
+
+export const add_todo = (todo) => {
   return {
     type: ADD_TODO,
     payload: {
-      text,
+      todo,
     },
   };
 };

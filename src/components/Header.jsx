@@ -8,13 +8,14 @@ import {
   clear_completed_todo,
   complete_all_todo,
 } from "../redux/todos/actions";
+import addTodo from "../redux/todos/thunk/addTodo";
 
 export default function Header() {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    text.trim().length && dispatch(add_todo(text));
+    text.trim().length && dispatch(addTodo(text));
     setText("");
   };
 

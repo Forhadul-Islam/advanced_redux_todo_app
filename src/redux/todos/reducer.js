@@ -3,6 +3,7 @@ import {
   CLEAR_COMPLETED_TODO,
   COMPLETE_ALL_TODO,
   DELETE_TODO,
+  LOAD_TODOS,
   SET_COLOR,
   TOGGLE_DONE,
 } from "./actionType";
@@ -11,16 +12,10 @@ import initialState from "./initialState";
 const todoReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case LOAD_TODOS:
+      return [...payload.todos];
     case ADD_TODO:
-      return [
-        ...state,
-        {
-          id: IdGenerator(state),
-          text: payload.text,
-          completed: false,
-          color: "red",
-        },
-      ];
+      return [...state, payload.todo];
     case DELETE_TODO:
       return state.filter((todo) => todo.id !== payload.todoId);
     case SET_COLOR:

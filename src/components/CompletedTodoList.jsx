@@ -3,24 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchTodos from "../redux/todos/thunk/fetchTodos";
 import Todo from "./Todo";
 
-export default function TodoList() {
+export default function CompletedTodoList() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   const { status, colors } = useSelector((state) => state.filters);
-  const filteredTodos = todos
-    .filter((todo) => {
-      switch (status) {
-        case "Complete":
-          return todo.completed;
-        case "Incomplete":
-          return !todo.completed;
-        default:
-          return todo;
-      }
-    })
-    .filter((todo) => {
-      return colors.length > 0 ? colors.includes(todo.color) : true;
-    });
+  const filteredTodos = todos.filter((todo) => todo.completed);
 
   useEffect(() => {
     dispatch(fetchTodos);

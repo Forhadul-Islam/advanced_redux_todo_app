@@ -4,3 +4,4 @@ export const DELETE_TODO = "todos/delete_todo";
 export const SET_COLOR = "todos/set_color";
 export const COMPLETE_ALL_TODO = "todos/complete_all_todo";
 export const CLEAR_COMPLETED_TODO = "todo/clear_completed_todo";
+export const LOAD_TODOS = "todos/load_todos";
