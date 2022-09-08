@@ -13,7 +13,7 @@ export default function CompletedTodoList() {
     dispatch(fetchTodos);
   }, []);
   return (
-    <div className="mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
+    <div className=" mt-2 text-gray-700 text-sm max-h-[300px] overflow-y-auto">
       {filteredTodos.map((todo) => (
         <Todo todo={todo} key={todo.id} />
       ))}

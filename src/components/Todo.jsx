@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import cancelImage from "../assets/images/cancel.png";
 import { delete_todo, set_color, toggle_done } from "../redux/todos/actions";
 import deleteTodo from "../redux/todos/thunk/deleteTodo";
+import editTodo from "../redux/todos/thunk/editTodo";
 import updateColor from "../redux/todos/thunk/updateColor";
 import updateStatus from "../redux/todos/thunk/updateStatus";
 
 export default function Todo({ todo }) {
   const dispatch = useDispatch();
   const { id, text, completed, color } = todo;
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [todoText, setTodoText] = useState(text);
   const toggleTodoHandler = (id) => {
     dispatch(updateStatus(id, completed));
   };
@@ -18,6 +22,12 @@ export default function Todo({ todo }) {
   //delete todo with id
   const deleteHandler = (id) => {
     dispatch(deleteTodo(id));
+  };
+
+  const handleEditTodo = (e) => {
+    e.preventDefault();
+    dispatch(editTodo(id, todoText));
+    setShowEditForm(false);
   };
   return (
     <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
@@ -37,9 +47,21 @@ export default function Todo({ todo }) {
         </svg>
       </div>
 
-      <div className={`select-none flex-1 ${completed && "line-through"}`}>
-        {text}
-      </div>
+      {!showEditForm && (
+        <div className={`select-none flex-1 ${completed && "line-through"}`}>
+          {text}
+        </div>
+      )}
+      {showEditForm && (
+        <form onSubmit={handleEditTodo} className={` select-none flex-1 `}>
+          <input
+            onChange={(e) => setTodoText(e.target.value)}
+            type="text"
+            value={todoText}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </form>
+      )}
 
       <div
         onClick={() => setColorHandler(id, "green")}
@@ -62,6 +84,12 @@ export default function Todo({ todo }) {
         }`}
       ></div>
 
+      <div
+        onClick={() => setShowEditForm(!showEditForm)}
+        className="p-1 bg-gray-100 rounded-full h-8 w-8 cursor-pointer text-center"
+      >
+        {!showEditForm ? "🖋️" : "🧨"}
+      </div>
       <img
         onClick={() => deleteHandler(id)}
         src={cancelImage}

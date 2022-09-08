@@ -1,31 +1,19 @@
 {
   "todos": [
     {
-      "id": 2,
-      "text": "Learn Modern ES6+ JavaScript",
-      "completed": true,
-      "color": "green"
-    },
-    {
-      "id": 3,
-      "text": "Learn React JS",
+      "text": "Learning Redux ",
       "completed": false,
-      "color": "yellow"
-    },
-    {
-      "text": "Learn Redux Basics",
-      "completed": true,
       "id": 4,
-      "color": "green"
+      "color": "red"
     },
     {
-      "text": "Learn Redux Toolkit",
+      "text": "Learn Redux Toolkit ",
       "completed": true,
       "id": 7
     },
     {
       "text": "Record Tutorials",
-      "completed": false,
+      "completed": true,
       "id": 8
     }
   ]

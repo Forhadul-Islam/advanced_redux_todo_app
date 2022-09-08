@@ -3,6 +3,7 @@ import {
   CLEAR_COMPLETED_TODO,
   COMPLETE_ALL_TODO,
   DELETE_TODO,
+  EDIT_TODO,
   LOAD_TODOS,
   SET_COLOR,
   TOGGLE_DONE,
@@ -16,6 +17,16 @@ const todoReducer = (state = initialState, action) => {
       return [...payload.todos];
     case ADD_TODO:
       return [...state, payload.todo];
+    case EDIT_TODO:
+      return state.map((todo) => {
+        if (todo.id === payload.todoId) {
+          return {
+            ...todo,
+            text: payload.text,
+          };
+        }
+        return todo;
+      });
     case DELETE_TODO:
       return state.filter((todo) => todo.id !== payload.todoId);
     case SET_COLOR:

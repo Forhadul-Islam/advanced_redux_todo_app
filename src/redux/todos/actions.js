@@ -3,6 +3,7 @@ import {
   CLEAR_COMPLETED_TODO,
   COMPLETE_ALL_TODO,
   DELETE_TODO,
+  EDIT_TODO,
   LOAD_TODOS,
   SET_COLOR,
   TOGGLE_DONE,
@@ -22,6 +23,16 @@ export const add_todo = (todo) => {
     type: ADD_TODO,
     payload: {
       todo,
+    },
+  };
+};
+
+export const edit_todo = (todoId, text) => {
+  return {
+    type: EDIT_TODO,
+    payload: {
+      todoId,
+      text,
     },
   };
 };
